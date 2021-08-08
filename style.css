@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: grey;
+  background-color: #cecece;
 }
 
 .container {
@@ -14,7 +14,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem 0 0 0 ;
+  padding: 1.5rem 0 0 0;
 }
 
 .app {
@@ -50,7 +50,6 @@ body {
   border-radius: 20px;
   cursor: pointer;
 }
-
 
 .cyan {
   background: cyan;
