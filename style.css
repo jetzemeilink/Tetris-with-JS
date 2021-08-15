@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #cecece;
+  background-color: #a7a7a7;
 }
 
 .container {
@@ -37,11 +37,11 @@ body {
 .square {
   width: 20px;
   height: 20px;
-  background: #ebebeb;
+  background: #7e7e7e;
   border: 1px solid #fff;
 }
 
-.move {
+.btn {
   border: none;
   background: mediumslateblue;
   opacity: 0.5;
@@ -53,27 +53,41 @@ body {
 
 .cyan {
   background: cyan;
+  box-shadow: 0 0 0.7em 0 cyan;
+  z-index: 100;
 }
 
 .orange {
-  background: orange;
+  background: #FFAD00;
+  box-shadow: 0 0 0.7em 0 #FFAD00;
+  z-index: 100;
 }
 
 .blue {
-  background: blue;
+  background: #099FFF;
+  box-shadow: 0 0 0.5em 0 #099FFF;
+  z-index: 100;
 }
 
 .yellow {
-  background: yellow;
+  background: #ccff00;
+  box-shadow: 0 0 0.5em 0 #ccff00;
+  z-index: 100;
 }
 
 .green {
-  background: green;
+  background: #33ff00;
+  box-shadow: 0 0 0.5em 0 #33ff00;
+  z-index: 100;
 }
 
 .red {
-  background: red;
+  background: #FF0000;
+  box-shadow: 0 0 0.5em 0 #FF0000;
+  z-index: 100;
 }
 .magenta {
   background: magenta;
+  box-shadow: 0 0 0.5em 0 magenta;
+  z-index: 100;
 }

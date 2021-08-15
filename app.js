@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const colors = ['cyan', 'blue', 'orange', 'yellow', 'green', 'red', 'magenta']
   const blocks = []
   let activeBlock = null
-  let speed = 200
+  let speed = 300
   let score = 0
 
   // block class
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
       [9, 8, 29, 30]
     ]
     let randomInt = Math.floor(Math.random() * shapes.length)
-    const block = new Block(shapes[randomInt], shapeTypes[randomInt])
+    const block = new Block(shapes[0], shapeTypes[0])
     activeBlock = block
   }
 
@@ -157,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     blocks.push(activeBlock)
     activeBlock = null
-    score += 50
     createNewBlock()
   }
 
@@ -185,35 +184,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // check if one of the lines is full
-  // function checkLines() {
-  //   let rowsCounter = []
-  //  for (let i = 0; i<gridArray.length; i++) {
-  //     let counter = 0
-  //     if (gridArray[i].classList.contains('fixed-block')) {
-  //       counter += 1
-  //     }
-  //     if (i % gridSize == 0) {
-  //       rowsCounter.push([i-gridSize, counter])
-  //       counter = 0
-  //     }
-      
-  //  }
-  //  rowsCounter = []
-  // }
 
   // update the score
   function updateScore() {
     const scoreDisplay = document.querySelector('#score')
     scoreDisplay.innerHTML = score
+    if (score > 200) {
+      speed += 200
+    }
   }
 
-  // game main
+  // check lines for full row
+  function checkRows() {
+    let counter = 0
+    for (let i = 0; i < gridArray.length; i++) {
+      if (gridArray[i].classList.contains("fixed-block") && i % 20 == 0) {
+        for (let j = 0; j < 20; j++) {
+          if (gridArray[i+j].classList.contains('fixed-block')) {
+            counter++
+            if (counter === 20) {
+              setTimeout(fullRow(i), 1000)                            
+            }
+          }
+        }
+        counter = 0
+      }
+    }
+}
 
+// remove full row and move the current fixed blocks down
+  function fullRow(row) {
+    for (let i = 0; i < 20; i++) {
+      gridArray[row+i].classList = 'square'
+    }
+    for (let i = gridArray.length -1; i > 0; i--) {
+      // if full row is not bottom row, fixed blocks don't move down..
+      if (gridArray[i].classList.contains('fixed-block' && i+20 < 400)) { 
+        let color = gridArray[i].classList.item(1)
+        gridArray[i].classList = 'square'
+        gridArray[i+20].classList.add(color)
+        gridArray[i+20].classList.add('fixed-block')
+      }
+    }
+    score += 200
+  }
+
+
+  // game main
   setInterval(() => {
     activeBlock?.moveDown()
-    // checkLines()
     updateScore()
+    checkRows()
   }, speed)
 
   document.addEventListener('keyup', handleMove)
@@ -223,4 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
   button.addEventListener('click', createNewBlock)
+
+
+
 })
